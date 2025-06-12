@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacques Derrida - Filósofo de la Deconstrucción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -50%;
+                width: 200%;
+                height: 100%;
+                background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+                animation: shine 3s infinite;
+            }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(52, 73, 94, 0.1);
+            border-radius: 10px;
+        }
+
+            .nav a {
+                color: #34495e;
+                text-decoration: none;
+                padding: 0.8rem 1.5rem;
+                border-radius: 25px;
+                background: linear-gradient(45deg, #3498db, #2980b9);
+                color: white;
+                transition: all 0.3s ease;
+                font-weight: bold;
+            }
+
+                .nav a:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+                }
+
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            section:hover {
+                transform: translateY(-5px);
+            }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+
+            h2::after {
+                content: '';
+                position: absolute;
+                bottom: -3px;
+                left: 0;
+                width: 50px;
+                height: 3px;
+                background: #e74c3c;
+            }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 5px solid #3498db;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+
+            .quote::before {
+                content: '"';
+                font-size: 4rem;
+                color: #3498db;
+                position: absolute;
+                top: -10px;
+                left: 15px;
+                opacity: 0.3;
+            }
+
+        .quote-author {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 1rem;
+            color: #2c3e50;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 1rem;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: linear-gradient(to bottom, #3498db, #2980b9);
+            }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -1.5rem;
+                top: 1rem;
+                width: 12px;
+                height: 12px;
+                background: #3498db;
+                border-radius: 50%;
+                border: 3px solid white;
+            }
+
+        .year {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.2em;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .work-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+            .work-card:hover {
+                transform: scale(1.05);
+            }
+
+        .work-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .work-year {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .links-section {
+            background: #ecf0f1;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+            .link-category h4 {
+                color: #2c3e50;
+                margin-bottom: 1rem;
+                font-size: 1.3em;
+            }
+
+            .link-category a {
+                display: block;
+                color: #3498db;
+                text-decoration: none;
+                margin: 0.5rem 0;
+                padding: 0.5rem;
+                border-radius: 5px;
+                transition: background 0.3s ease;
+            }
+
+                .link-category a:hover {
+                    background: #ecf0f1;
+                    transform: translateX(5px);
+                }
+
+        .influences {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .influence-tag {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .context-box {
+            background: linear-gradient(135deg, #16a085, #27ae60);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jacques Derrida</h1>
+            <p class="subtitle">(1930-2004) • El Filósofo de la Deconstrucción</p>
+        </header>
+
+        <nav class="nav">
+            <a href="#biografia">Biografía</a>
+            <a href="#pensamiento">Pensamiento</a>
+            <a href="#obras">Obras Principales</a>
+            <a href="#influencias">Influencias</a>
+            <a href="#contexto">Contexto</a>
+            <a href="#enlaces">Enlaces</a>
+        </nav>
+
+        <section id="biografia">
+            <h2>Biografía</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">1930</span>
+                    <p>Nace el 15 de julio en El-Biar, Argelia, en una familia judía sefardí. Su nombre original era Jackie Élie Derrida.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1940-1942</span>
+                    <p>Expulsado de la escuela debido a las leyes antisemitas del régimen de Vichy en Argelia. Esta experiencia marcará profundamente su pensamiento sobre la exclusión y la alteridad.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1952</span>
+                    <p>Se traslada a París para preparar el ingreso a la École Normale Supérieure, donde estudiaría filosofía.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1956</span>
+                    <p>Ingresa a la École Normale Supérieure de París, donde será alumno de Louis Althusser y Michel Foucault.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1967</span>
+                    <p>Año crucial: publica simultáneamente "De la gramatología", "La escritura y la diferencia" y "La voz y el fenómeno", obras fundacionales de la deconstrucción.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1975</span>
+                    <p>Funda junto a otros intelectuales el Grupo de Investigación sobre la Enseñanza Filosófica (GREPH).</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1980s-1990s</span>
+                    <p>Período de mayor reconocimiento internacional. Enseña regularmente en universidades estadounidenses, especialmente en Yale y posteriormente en la Universidad de California, Irvine.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2004</span>
+                    <p>Muere el 9 de octubre en París, dejando una obra monumental que ha transformado la filosofía, la literatura y las ciencias humanas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pensamiento">
+            <h2>Pensamiento Filosófico</h2>
+
+            <h3>La Deconstrucción</h3>
+            <p>La deconstrucción no es un método ni una técnica, sino una forma de lectura que revela las contradicciones internas y las aporías de los textos. Derrida no busca destruir, sino mostrar cómo toda construcción conceptual lleva en sí misma los elementos de su propia problematización.</p>
+
+            <div class="quote">
+                La deconstrucción no es una crítica en el sentido general o en el sentido kantiano del término. No procede por preguntas o por un cuestionamiento metódico. En un cierto sentido, no "procede" en absoluto y marca una suspensión del juicio.
+                <div class="quote-author">— Carta a un amigo japonés (1985)</div>
+            </div>
+
+            <h3>La Différance</h3>
+            <p>Concepto central del pensamiento derridiano que juega con la diferencia temporal (diferir) y espacial (diferencia). La différance es lo que hace posible la diferencia y la significación, pero ella misma no es ni presente ni ausente.</p>
+
+            <div class="quote">
+                La différance es lo que hace que el movimiento de la significación no sea posible más que si cada elemento llamado "presente", que aparece sobre la escena de la presencia, se relaciona con otra cosa distinta de sí mismo.
+                <div class="quote-author">— La différance (1968)</div>
+            </div>
+
+            <h3>La Escritura y el Logocentrismo</h3>
+            <p>Derrida critica la tradición occidental que privilegia la palabra hablada sobre la escritura, mostrando cómo esta jerarquía revela una metafísica de la presencia que debe ser cuestionada.</p>
+
+            <div class="quote">
+                No hay nada fuera del texto. No hay un afuera-del-texto. Y esto no es porque Jean-Jacques Rousseau hable mejor cuando está ausente y actuando mediante procuración de su escritura que cuando está presente y hablando cerca de Madame de Warens, sino porque no hay ningún afuera-del-texto.
+                <div class="quote-author">— De la gramatología (1967)</div>
+            </div>
+
+            <h3>La Hospitalidad</h3>
+            <p>En sus últimas obras, Derrida desarrolla una ética de la hospitalidad incondicional hacia el Otro, explorando las aporías entre la hospitalidad absoluta y las hospitalidades condicionadas.</p>
+
+            <div class="quote">
+                La hospitalidad pura consiste en abrir la casa de uno y dársela al otro (al que viene como extranjero), antes incluso de preguntarle su nombre, o exigirle una compensación, o el cumplimiento de la más mínima condición.
+                <div class="quote-author">— Sobre la hospitalidad (1997)</div>
+            </div>
+        </section>
+
+        <section id="obras">
+            <h2>Obras Principales</h2>
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-title">De la gramatología</div>
+                    <div class="work-year">1967</div>
+                    <p>Obra fundacional donde desarrolla la crítica al logocentrismo occidental y la primacía de la escritura sobre la palabra hablada.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/gramatolog%C3%ADa-Siglo-XXI-Espa%C3%B1a-General/dp/8432314226" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">La escritura y la diferencia</div>
+                    <div class="work-year">1967</div>
+                    <p>Colección de ensayos que incluye textos fundamentales sobre Lévi-Strauss, Foucault, Levinas y la deconstrucción.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/escritura-diferencia-Anthropos-Editorial/dp/8476585772" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">La voz y el fenómeno</div>
+                    <div class="work-year">1967</div>
+                    <p>Introducción al problema del signo en la fenomenología de Husserl, obra clave para entender la deconstrucción de la metafísica de la presencia.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/fenomeno-Introducci%C3%B3n-problema-fenomenolog%C3%ADa-Husserl/dp/8476351259" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">Márgenes de la filosofía</div>
+                    <div class="work-year">1972</div>
+                    <p>Incluye el famoso ensayo "La différance" y otros textos fundamentales sobre la deconstrucción de la filosofía tradicional.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/M%C3%A1rgenes-filosof%C3%ADa-Feminismos-Jacques-Derrida/dp/8437620481" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">Glas</div>
+                    <div class="work-year">1974</div>
+                    <p>Obra experimental que yuxtapone textos sobre Hegel y Jean Genet, desafiando las convenciones académicas tradicionales.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/s?k=derrida+glas+espa%C3%B1ol" style="color: #f39c12;">Buscar en Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">La tarjeta postal</div>
+                    <div class="work-year">1980</div>
+                    <p>Reflexión sobre la comunicación, el amor y la filosofía a través del formato epistolar y el análisis de una postal.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/tarjeta-postal-Socrates-Freud-mas/dp/8432312347" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">Espectros de Marx</div>
+                    <div class="work-year">1993</div>
+                    <p>Deconstrucción del marxismo y reflexión sobre la justicia, la democracia y el porvenir tras la caída del comunismo.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/Espectros-Marx-Jacques-Derrida/dp/8481647659" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-title">Sobre la hospitalidad</div>
+                    <div class="work-year">1997</div>
+                    <p>Desarrollo de una ética de la hospitalidad incondicional y análisis de las aporías de la acogida del Otro.</p>
+                    <p><strong>Enlaces:</strong></p>
+                    <p>• <a href="https://www.amazon.es/Sobre-hospitalidad-Pasos-Perdidos-Jacques/dp/8481647195" style="color: #f39c12;">Amazon España</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="influencias">
+            <h2>Influencias Recibidas y Ejercidas</h2>
+
+            <h3>Principales Influencias Recibidas</h3>
+            <div class="influences">
+                <span class="influence-tag">Edmund Husserl</span>
+                <span class="influence-tag">Martin Heidegger</span>
+                <span class="influence-tag">Ferdinand de Saussure</span>
+                <span class="influence-tag">Emmanuel Levinas</span>
+                <span class="influence-tag">Sigmund Freud</span>
+                <span class="influence-tag">Friedrich Nietzsche</span>
+                <span class="influence-tag">Maurice Blanchot</span>
+                <span class="influence-tag">Claude Lévi-Strauss</span>
+                <span class="influence-tag">Georg W.F. Hegel</span>
+                <span class="influence-tag">Jean-Jacques Rousseau</span>
+            </div>
+
+            <p>Derrida desarrolló su pensamiento en diálogo crítico con la fenomenología de Husserl, la ontología fundamental de Heidegger, y la lingüística estructural de Saussure. Su lectura de Levinas fue crucial para su ética de la alteridad, mientras que Freud le proporcionó herramientas para pensar la temporalidad diferida del inconsciente.</p>
+
+            <div class="quote">
+                Heidegger es probablemente el pensador que ha ido más lejos en la interrogación radical de todo cuanto en la filosofía, desde Platón hasta Husserl, ha podido someterse al recurso último de la pregunta '¿qué es...?'
+                <div class="quote-author">— La escritura y la diferencia (1967)</div>
+            </div>
+
+            <h3>Influencia Ejercida</h3>
+            <p>La deconstrucción derridiana ha revolucionado múltiples disciplinas:</p>
+
+            <h4>En Filosofía</h4>
+            <p>Ha influido en pensadores como Jean-Luc Nancy, Philippe Lacoue-Labarthe, Gayatri Spivak, Judith Butler, y toda una generación de filósofos continentales y analíticos.</p>
+
+            <h4>En Estudios Literarios</h4>
+            <p>La Escuela de Yale (Paul de Man, J. Hillis Miller, Geoffrey Hartman) adoptó y desarrolló la deconstrucción como método de crítica literaria.</p>
+
+            <h4>En Teoría Política</h4>
+            <p>Su trabajo sobre Marx, la democracia y la justicia ha influido en teóricos como Ernesto Laclau, Chantal Mouffe y Jacques Rancière.</p>
+
+            <h4>En Estudios de Género</h4>
+            <p>Judith Butler y otras teóricas feministas han aplicado la deconstrucción al análisis del género y la sexualidad.</p>
+        </section>
+
+        <section id="contexto">
+            <h2>Contexto Histórico y Filosófico</h2>
+
+            <div class="context-box">
+                <h3>Francia de Posguerra (1945-1968)</h3>
+                <p>Derrida desarrolla su pensamiento en la Francia de la reconstrucción, marcada por el existencialismo de Sartre y Beauvoir, el estructuralismo de Lévi-Strauss y Althusser, y los eventos de Mayo del 68.</p>
+            </div>
+
+            <h3>El Momento Estructuralista</h3>
+            <p>Los años 60 están dominados por el estructuralismo en Francia. Derrida, sin rechazar completamente sus logros, desarrolla lo que se llamará "postestructuralismo", cuestionando las pretensiones científicas y sistemáticas del estructuralismo.</p>
+
+            <div class="quote">
+                El estructuralismo vive de la diferencia entre su promesa y su práctica. Por la diferencia, en él, entre el acto y el enunciado, el enunciado no puede anunciar sino el acto por venir, no el presente acto.
+                <div class="quote-author">— La escritura y la diferencia (1967)</div>
+            </div>
+
+            <h3>La Guerra de Argelia y la Identidad</h3>
+            <p>Como judío argelino, Derrida vivió la complejidad de las identidades múltiples y conflictivas. Su experiencia de la exclusión durante el régimen de Vichy y la Guerra de Argelia (1954-1962) influye profundamente en su pensamiento sobre la alteridad y la hospitalidad.</p>
+
+            <h3>La Filosofía Continental vs Analítica</h3>
+            <p>Derrida se sitúa en la tradición continental pero mantiene un diálogo crítico con la filosofía analítica, especialmente a través de sus intercambios con John Searle sobre los actos de habla.</p>
+
+            <h3>El Giro Lingüístico</h3>
+            <p>Su obra participa del "giro lingüístico" del siglo XX, pero radicaliza sus consecuencias mostrando cómo el lenguaje no es transparente sino que está siempre différé, diferido y diferente de sí mismo.</p>
+        </section>
+
+        <section id="enlaces">
+            <h2>Enlaces y Referencias</h2>
+
+            <div class="links-section">
+                <div class="links-grid">
+                    <div class="link-category">
+                        <h4>📚 Textos Académicos</h4>
+                        <a href="https://www.academia.edu/search?q=Jacques%20Derrida" target="_blank">Jacques Derrida en Academia.edu</a>
+                        <a href="https://es.wikipedia.org/wiki/Jacques_Derrida" target="_blank">Wikipedia - Jacques Derrida</a>
+                        <a href="https://plato.stanford.edu/entries/derrida/" target="_blank">Stanford Encyclopedia - Derrida (inglés)</a>
+                        <a href="https://www.filosofia.org/ave/001/a204.htm" target="_blank">Proyecto Filosofía en Español - Derrida</a>
+                    </div>
+
+                    <div class="link-category">
+                        <h4>🏛️ Instituciones y Archivos</h4>
+                        <a href="https://archive.org/search.php?query=jacques%20derrida" target="_blank">Internet Archive - Obras de Derrida</a>
+                        <a href="https://www.imec-archives.com/fonds/derrida-jacques/" target="_blank">Archivos IMEC - Fondo Derrida</a>
+                        <a href="https://derridafoundation.org/" target="_blank">Fundación Derrida (inglés)</a>
+                        <a href="https://www.college-de-france.fr/site/jacques-derrida/_biography.htm" target="_blank">Collège de France - Biografía</a>
+                    </div>
+
+                    <div class="link-category">
+                        <h4>📖 Librerías Online</h4>
+                        <a href="https://www.amazon.es/s?k=jacques+derrida+espa%C3%B1ol" target="_blank">Amazon España - Obras de Derrida</a>
+                        <a href="https://www.casadellibro.com/libros/derrida-jacques/31004" target="_blank">Casa del Libro - Jacques Derrida</a>
+                        <a href="https://www.agapea.com/buscar/buscador.php?texto=jacques+derrida" target="_blank">Agapea - Jacques Derrida</a>
+                        <a href="https://www.iberlibro.com/servlet/SearchResults?an=derrida&sts=t" target="_blank">IberLibro - Libros de Derrida</a>
+                    </div>
+
+                    <div class="link-category">
+                        <h4>🎥 Recursos Audiovisuales</h4>
+                        <a href="https://www.youtube.com/results?search_query=jacques+derrida+espa%C3%B1ol" target="_blank">YouTube - Derrida en español</a>
+                        <a href="https://www.rtve.es/play/videos/la-aventura-del-pensamiento/aventura-pensamiento-jacques-derrida/1347421/" target="_blank">RTVE - La Aventura del Pensamiento</a>
+                        <a href="https://www.filmin.es/pelicula/derrida" target="_blank">Filmin - Documental Derrida</a>
+                    </div>
+
+                    <div class="link-category">
+                        <h4>📝 Revistas y Artículos</h4>
+                        <a href="https://revistas.ucm.es/index.php/RESF/search?query=derrida" target="_blank">Revista de Estudios de Filosofía - UCM</a>
+                        <a href="https://www.revistadefilosofia.org/?s=derrida" target="_blank">Revista de Filosofía</a>
+                        <a href="https://dialnet.unirioja.es/servlet/autor?codigo=38944" target="_blank">Dialnet - Artículos
